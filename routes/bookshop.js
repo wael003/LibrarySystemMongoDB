@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 
             await bookshopInfo.save();
         } else {
-             res.status(401).json({ massage: `there is book not found` });
+            res.status(401).json({ massage: `there is book not found` });
         }
 
 
@@ -62,13 +62,13 @@ router.put('/:id', async (req, res) => {
 
         }
         if (books.length == bookIds.length) {
-            const bookshopInfo = await BookShop.findOneAndUpdate({shopId : req.params.id} , req.body , {new : true});
+            const bookshopInfo = await BookShop.findOneAndUpdate({ shopId: req.params.id }, req.body, { new: true });
 
-            res.status(201).json({ bookshopInfo});
+            res.status(201).json({ bookshopInfo });
         } else {
-             res.status(401).json({ message: `One or more books not found` });
+            res.status(401).json({ message: `One or more books not found` });
         }
-       
+
     } catch (error) {
         res.status(500).json({ error: error })
     }

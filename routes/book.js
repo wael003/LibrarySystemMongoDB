@@ -48,7 +48,7 @@ router.put('/:id', async (req, res) => {
 
         if (!author) res.status(401).json({ massage: `author not found` });
 
-        const book = Book.findOneAndUpdate({ bookId: req.params.id }, req.body)
+        const book = await Book.findOneAndUpdate({ bookId: req.params.id }, req.body , {new : true})
 
         res.json({ book })
     } catch (error) {
@@ -58,7 +58,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const massage = Book.findOneAndDelete({ bookId: req.params.id });
+        const massage = await Book.findOneAndDelete({ bookId: req.params.id });
         if (massage) {
             res.json({ massage: 'Book deleted!' });
         }
